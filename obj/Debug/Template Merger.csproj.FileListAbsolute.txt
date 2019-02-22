@@ -1,0 +1,7 @@
+D:\Users\Wenzz\source\repos\Aion EU\Template Merger\obj\Debug\Template Merger.csprojAssemblyReference.cache
+D:\Users\Wenzz\source\repos\Aion EU\Template Merger\obj\Debug\Template Merger.csproj.CoreCompileInputs.cache
+D:\Users\Wenzz\source\repos\Aion EU\Template Merger\bin\Debug\template_merger.exe.config
+D:\Users\Wenzz\source\repos\Aion EU\Template Merger\bin\Debug\template_merger.exe
+D:\Users\Wenzz\source\repos\Aion EU\Template Merger\bin\Debug\template_merger.pdb
+D:\Users\Wenzz\source\repos\Aion EU\Template Merger\obj\Debug\template_merger.exe
+D:\Users\Wenzz\source\repos\Aion EU\Template Merger\obj\Debug\template_merger.pdb
