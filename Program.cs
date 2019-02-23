@@ -24,6 +24,7 @@ namespace Iswenzz.AION.Merger
             "-server_goods_in_list",
             "-server_goods_purchase_list",
             "-server_npc_skills",
+            "-server_skill",
             "-server_weather",
             "-server_teleport_location",
             "-server_teleporter",
@@ -41,9 +42,8 @@ namespace Iswenzz.AION.Merger
             "-client_npc_goods_purchase_list",
             "-client_abyss_icon",
             "-client_waypoint",
-            "-client_waypoint_fix",
             "-client_source_sphere",
-            "-client_source_sphere_fix",
+            "-client_skill",
             "-client_zonemap",
             "-client_instance_cooltime",
             "-client_instance_cooltime2",
@@ -63,16 +63,16 @@ namespace Iswenzz.AION.Merger
             {
                 Console.WriteLine
                 (
-                    "This Software will merge XML Files without duplicating elements,\n",
-                    "both xml need to have the same structure.\n",
-                    "i.e: path 1 = quest data 4.7, path 2 = quest data 5.8\n\n",
-                    "(!) Don't forget to remove the Read Only properties on each file.\n\n",
-                    "Usage:\n\n\t",
-                    "template_merger.exe [options] <path 1> <path 2>\n\n",
-                    "Options:\n\n"
+                    "This Software will merge XML Files without duplicating elements,\n" +
+                    "both xml need to have the same structure.\n" +
+                    "i.e: path 1 = quest data 4.7, path 2 = quest data 5.8\n\n" +
+                    "(!) Don't forget to remove the Read Only properties on each file.\n\n" +
+                    "Usage:\n\n\t" +
+                    "template_merger.exe [options] <path 1> <path 2>\n\n" +
+                    "Options:\n"
                 );
                 foreach (string opt in list_option)
-                    Console.WriteLine("\t" + opt + "\n");
+                    Console.WriteLine("\t" + opt);
                 return;
             }
             option = args[0];
@@ -99,6 +99,7 @@ namespace Iswenzz.AION.Merger
                 case "-server_goods_purchase_list": Xml.MergeXmlServer(Program.path_1, Program.path_2, "purchase_list", "id"); break;
                 case "-server_npc_templates": Xml.MergeXmlServer(Program.path_1, Program.path_2, "npc_template", "npc_id"); break;
                 case "-server_npc_skills": Xml.MergeXmlServer(Program.path_1, Program.path_2, "npcskills", "npcid"); break;
+                case "-server_skill": Xml.MergeXmlServer(Program.path_1, Program.path_2, "skill_template", "skill_id"); break;
                 case "-server_weather": Xml.MergeXmlServer(Program.path_1, Program.path_2, "map", "id"); break;
                 case "-server_teleport_location": Xml.MergeXmlServer(Program.path_1, Program.path_2, "teleloc_template", "loc_id"); break;
                 case "-server_teleporter": Xml.MergeXmlServer(Program.path_1, Program.path_2, "teleporter_template", "npc_ids"); break;
@@ -111,6 +112,7 @@ namespace Iswenzz.AION.Merger
                 case "-server_flypath": Xml.MergeXmlServer(Program.path_1, Program.path_2, "flypath_location", "id"); break;
 
                 // Client
+                case "-client_skill": Xml.MergeXmlClient(Program.path_1, Program.path_2, "skill_base_client", "id"); break;
                 case "-client_source_sphere": Csv.MergeCSV(Program.path_1, Program.path_2); break;
                 case "-client_waypoint": Csv.MergeCSV(Program.path_1, Program.path_2); break;
                 case "-client_npc_goods_list": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_npc_goodslist", "id"); break;
