@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Xml.Linq;
 
-using Iswenzz.AION.utility;
+using Iswenzz.AION.Utility.Format;
 
 namespace Iswenzz.AION.Merger
 {
     public static class Program
     {
-        public static string option;
-        public static string path_1;
-        public static string path_2;
+        public static string Option { get; set; }
+        public static string Path1 { get; set; }
+        public static string Path2 { get; set; }
 
-        private static List<string> list_option = new List<string>
+        public static List<string> OptionList = new List<string>
         {
             // Server
             "-server_npc_trade_list",
@@ -54,7 +52,7 @@ namespace Iswenzz.AION.Merger
             "-client_quest",
             "-client_quest_data_driven",
             "-client_quest_monster",
-            "-client_quest_script_monster"
+            "-client_quest_script_monster",
         };
 
         private static void Main(string[] args)
@@ -71,67 +69,58 @@ namespace Iswenzz.AION.Merger
                     "template_merger.exe [options] <path 1> <path 2>\n\n" +
                     "Options:\n"
                 );
-                foreach (string opt in list_option)
+                foreach (string opt in OptionList)
                     Console.WriteLine("\t" + opt);
                 return;
             }
-            option = args[0];
-            path_1 = args[1];
-            path_2 = args[2];
+            Option = args[0];
+            Path1 = args[1];
+            Path2 = args[2];
 
-            Template.Init();
-            Console.WriteLine("\nDone!");
-        }
-    }
-
-    public static class Template
-    {
-        public static void Init()
-        {
-            switch (Program.option)
+            switch (Option)
             {
                 // Server
-                case "-server_npc_trade_list": Xml.MergeXmlServer(Program.path_1, Program.path_2, "tradelist_template", "npc_id"); break;
-                case "-server_npc_trade_in_list": Xml.MergeXmlServer(Program.path_1, Program.path_2, "trade_in_list_template", "npc_id"); break;
-                case "-server_npc_trade_purchase": Xml.MergeXmlServer(Program.path_1, Program.path_2, "purchase_template", "npc_id"); break;
-                case "-server_goods_list": Xml.MergeXmlServer(Program.path_1, Program.path_2, "list", "id"); break;
-                case "-server_goods_in_list": Xml.MergeXmlServer(Program.path_1, Program.path_2, "in_list", "id"); break;
-                case "-server_goods_purchase_list": Xml.MergeXmlServer(Program.path_1, Program.path_2, "purchase_list", "id"); break;
-                case "-server_npc_templates": Xml.MergeXmlServer(Program.path_1, Program.path_2, "npc_template", "npc_id"); break;
-                case "-server_npc_skills": Xml.MergeXmlServer(Program.path_1, Program.path_2, "npcskills", "npcid"); break;
-                case "-server_skill": Xml.MergeXmlServer(Program.path_1, Program.path_2, "skill_template", "skill_id"); break;
-                case "-server_weather": Xml.MergeXmlServer(Program.path_1, Program.path_2, "map", "id"); break;
-                case "-server_teleport_location": Xml.MergeXmlServer(Program.path_1, Program.path_2, "teleloc_template", "loc_id"); break;
-                case "-server_teleporter": Xml.MergeXmlServer(Program.path_1, Program.path_2, "teleporter_template", "npc_ids"); break;
-                case "-server_hotspot": Xml.MergeXmlServer(Program.path_1, Program.path_2, "hotspot_template", "id"); break;
-                case "-server_quest": Xml.MergeXmlServer(Program.path_1, Program.path_2, "quest", "id"); break;
-                case "-server_windstreams": Xml.MergeXmlServer(Program.path_1, Program.path_2, "windstream", "mapid"); break;
-                case "-server_staticdoors": Xml.MergeXmlServer(Program.path_1, Program.path_2, "world", "world"); break;
-                case "-server_zones_weather": Xml.MergeXmlServer(Program.path_1, Program.path_2, "zone", "name"); break;
-                case "-server_zones_quest": Xml.MergeXmlServer(Program.path_1, Program.path_2, "zone", "name"); break;
-                case "-server_flypath": Xml.MergeXmlServer(Program.path_1, Program.path_2, "flypath_location", "id"); break;
+                case "-server_npc_trade_list":      Xml.MergeXmlServer(Path1, Path2, "tradelist_template", "npc_id");       break;
+                case "-server_npc_trade_in_list":   Xml.MergeXmlServer(Path1, Path2, "trade_in_list_template", "npc_id");   break;
+                case "-server_npc_trade_purchase":  Xml.MergeXmlServer(Path1, Path2, "purchase_template", "npc_id");        break;
+                case "-server_goods_list":          Xml.MergeXmlServer(Path1, Path2, "list", "id");                         break;
+                case "-server_goods_in_list":       Xml.MergeXmlServer(Path1, Path2, "in_list", "id");                      break;
+                case "-server_goods_purchase_list": Xml.MergeXmlServer(Path1, Path2, "purchase_list", "id");                break;
+                case "-server_npc_templates":       Xml.MergeXmlServer(Path1, Path2, "npc_template", "npc_id");             break;
+                case "-server_npc_skills":          Xml.MergeXmlServer(Path1, Path2, "npcskills", "npcid");                 break;
+                case "-server_skill":               Xml.MergeXmlServer(Path1, Path2, "skill_template", "skill_id");         break;
+                case "-server_weather":             Xml.MergeXmlServer(Path1, Path2, "map", "id");                          break;
+                case "-server_teleport_location":   Xml.MergeXmlServer(Path1, Path2, "teleloc_template", "loc_id");         break;
+                case "-server_teleporter":          Xml.MergeXmlServer(Path1, Path2, "teleporter_template", "npc_ids");     break;
+                case "-server_hotspot":             Xml.MergeXmlServer(Path1, Path2, "hotspot_template", "id");             break;
+                case "-server_quest":               Xml.MergeXmlServer(Path1, Path2, "quest", "id");                        break;
+                case "-server_windstreams":         Xml.MergeXmlServer(Path1, Path2, "windstream", "mapid");                break;
+                case "-server_staticdoors":         Xml.MergeXmlServer(Path1, Path2, "world", "world");                     break;
+                case "-server_zones_weather":       Xml.MergeXmlServer(Path1, Path2, "zone", "name");                       break;
+                case "-server_zones_quest":         Xml.MergeXmlServer(Path1, Path2, "zone", "name");                       break;
+                case "-server_flypath":             Xml.MergeXmlServer(Path1, Path2, "flypath_location", "id");             break;
 
                 // Client
-                case "-client_skill": Xml.MergeXmlClient(Program.path_1, Program.path_2, "skill_base_client", "id"); break;
-                case "-client_source_sphere": Csv.MergeCSV(Program.path_1, Program.path_2); break;
-                case "-client_waypoint": Csv.MergeCSV(Program.path_1, Program.path_2); break;
-                case "-client_npc_goods_list": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_npc_goodslist", "id"); break;
-                case "-client_npc_goods_in_list": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_npc_trade_in_list", "id"); break;
-                case "-client_npc_goods_purchase_list": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_npc_purchase_list", "id"); break;
-                case "-client_zonemap": Xml.MergeXmlClient(Program.path_1, Program.path_2, "zonemap", "id"); break;
-                case "-client_abyss_icon": Xml.MergeXmlClient(Program.path_1, Program.path_2, "abyss_icon", "pos_x"); break;
-                case "-client_instance_cooltime": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_instance_cooltime", "id"); break;
-                case "-client_instance_cooltime2": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_instance_cooltime2", "id"); break;
-                case "-client_quest": Xml.MergeXmlClient(Program.path_1, Program.path_2, "quest", "id"); break;
-                case "-client_artifact": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_artifact", "id"); break;
-                case "-client_fly_path": Xml.MergeXmlClient(Program.path_1, Program.path_2, "path_group", "group_id"); break;
-                case "-client_airline": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_airline", "id"); break;
-                case "-client_airport": Xml.MergeXmlClient(Program.path_1, Program.path_2, "client_airport", "id"); break;
-                case "-client_quest_data_driven": Xml.MergeXmlClient(Program.path_1, Program.path_2, "quest_data_driven", "id"); break;
-                case "-client_quest_monster": Csv.MergeCSV(Program.path_1, Program.path_2, "progress", 1); break;
-                case "-client_quest_script_monster": Csv.MergeCSV(Program.path_1, Program.path_2, "progress", 1); break;
-                default: break;
+                case "-client_skill":               Xml.MergeXmlClient(Path1, Path2, "skill_base_client", "id");            break;
+                case "-client_source_sphere":       Csv.MergeCSV(Path1, Path2);                                             break;
+                case "-client_waypoint":            Csv.MergeCSV(Path1, Path2);                                             break;
+                case "-client_npc_goods_list":      Xml.MergeXmlClient(Path1, Path2, "client_npc_goodslist", "id");         break;
+                case "-client_npc_goods_in_list":   Xml.MergeXmlClient(Path1, Path2, "client_npc_trade_in_list", "id");     break;
+                case "-client_npc_goods_purchase_list": Xml.MergeXmlClient(Path1, Path2, "client_npc_purchase_list", "id"); break;
+                case "-client_zonemap":             Xml.MergeXmlClient(Path1, Path2, "zonemap", "id");                      break;
+                case "-client_abyss_icon":          Xml.MergeXmlClient(Path1, Path2, "abyss_icon", "pos_x");                break;
+                case "-client_instance_cooltime":   Xml.MergeXmlClient(Path1, Path2, "client_instance_cooltime", "id");     break;
+                case "-client_instance_cooltime2":  Xml.MergeXmlClient(Path1, Path2, "client_instance_cooltime2", "id");    break;
+                case "-client_quest":               Xml.MergeXmlClient(Path1, Path2, "quest", "id");                        break;
+                case "-client_artifact":            Xml.MergeXmlClient(Path1, Path2, "client_artifact", "id");              break;
+                case "-client_fly_path":            Xml.MergeXmlClient(Path1, Path2, "path_group", "group_id");             break;
+                case "-client_airline":             Xml.MergeXmlClient(Path1, Path2, "client_airline", "id");               break;
+                case "-client_airport":             Xml.MergeXmlClient(Path1, Path2, "client_airport", "id");               break;
+                case "-client_quest_data_driven":   Xml.MergeXmlClient(Path1, Path2, "quest_data_driven", "id");            break;
+                case "-client_quest_monster":       Csv.MergeCSV(Path1, Path2, "progress", 1);                              break;
+                case "-client_quest_script_monster":Csv.MergeCSV(Path1, Path2, "progress", 1);                              break;
             }
+            Console.WriteLine("\nDone!");
         }
     }
 }
