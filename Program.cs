@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Iswenzz.AION.Utility.Format;
+using Iswenzz.AION.Merger.Format;
 
 namespace Iswenzz.AION.Merger
 {
